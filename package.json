@@ -1,0 +1,12 @@
+{
+  "name": "riddle-lock",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:sheldarr/riddle-lock.git",
+  "author": "sheldar <kewin.polok@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^7.0.0",
+    "faker": "^5.2.0"
+  }
+}
