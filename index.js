@@ -8,9 +8,6 @@ program.parse(process.argv);
 
 const options = program.opts();
 
-const complexity = Number(options.complexity);
-const word = options.word;
-
 const CONSONANTS = [
   'b',
   'c',
@@ -31,8 +28,13 @@ const CONSONANTS = [
   'z',
 ];
 const VOWELS = ['a', 'e', 'i', 'o', 'u', 'y'];
-
 const VOWEL_CHANCE = 0.3;
+
+const complexity = Math.min(
+  Number(options.complexity),
+  [...CONSONANTS, ...VOWELS].length,
+);
+const word = options.word;
 
 const lockColumns = [...word.split('').map((letter) => [letter])];
 
