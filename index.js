@@ -11,7 +11,7 @@ const options = program.opts();
 const complexity = Number(options.complexity);
 const word = options.word;
 
-const consonants = [
+const CONSONANTS = [
   'b',
   'c',
   'd',
@@ -30,15 +30,15 @@ const consonants = [
   'w',
   'z',
 ];
-const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+const VOWELS = ['a', 'e', 'i', 'o', 'u', 'y'];
 
 const VOWEL_CHANCE = 0.3;
 
 const lockColumns = [...word.split('').map((letter) => [letter])];
 
 const randomConsonant = () =>
-  consonants[Math.floor(Math.random() * consonants.length)];
-const randomVowel = () => vowels[Math.floor(Math.random() * vowels.length)];
+  CONSONANTS[Math.floor(Math.random() * CONSONANTS.length)];
+const randomVowel = () => VOWELS[Math.floor(Math.random() * VOWELS.length)];
 const randomLetter = () =>
   Math.random() < VOWEL_CHANCE ? randomVowel() : randomConsonant();
 const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
