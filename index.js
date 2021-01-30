@@ -32,26 +32,36 @@ const consonants = [
 ];
 const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
 
-const riddleLock = [];
+const VOWEL_CHANCE = 0.3;
 
-const vowelChance = 0.3;
+const lockColumns = [...word.split('').map((letter) => [letter])];
 
-[...Array(word.length).keys()].map((index) => {
-  riddleLock[index] = [
-    word.charAt(index),
-    ...[...Array(complexity - 1).keys()].map((index) => {
-      return Math.random() < vowelChance
-        ? vowels[Math.floor(Math.random() * vowels.length)]
-        : consonants[Math.floor(Math.random() * consonants.length)];
-    }),
-  ].sort(() => Math.random() - 0.5);
-});
+const randomConsonant = () =>
+  consonants[Math.floor(Math.random() * consonants.length)];
+const randomVowel = () => vowels[Math.floor(Math.random() * vowels.length)];
+const randomLetter = () =>
+  Math.random() < VOWEL_CHANCE ? randomVowel() : randomConsonant();
+const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
 
-for (let x = 0; x < complexity; x++) {
+for (let columnIndex = 0; columnIndex < word.length; columnIndex++) {
+  for (let index = 0; index < complexity - 1; index++) {
+    while (true) {
+      const letter = randomLetter();
+
+      if (!lockColumns[columnIndex].includes(letter)) {
+        lockColumns[columnIndex].push(letter);
+        break;
+      }
+    }
+  }
+  lockColumns[columnIndex] = shuffleArray(lockColumns[columnIndex]);
+}
+
+for (let characterIndex = 0; characterIndex < complexity; characterIndex++) {
   let row = '';
 
-  for (let y = 0; y < word.length; y++) {
-    row += riddleLock[y][x];
+  for (let columnIndex = 0; columnIndex < word.length; columnIndex++) {
+    row += lockColumns[columnIndex][characterIndex];
   }
 
   console.log(row.toUpperCase());
