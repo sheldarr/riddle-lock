@@ -5,6 +5,9 @@
   "repository": "git@github.com:sheldarr/riddle-lock.git",
   "author": "sheldar <kewin.polok@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "chalk": "^4.1.0",
     "commander": "^7.0.0"
