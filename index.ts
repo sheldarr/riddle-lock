@@ -1,4 +1,4 @@
-const { program } = require('commander');
+import { program } from 'commander';
 
 program
   .requiredOption('-c, --complexity <number>', 'riddle complexity')
@@ -34,7 +34,7 @@ const complexity = Math.min(
   Number(options.complexity),
   [...CONSONANTS, ...VOWELS].length,
 );
-const word = options.word;
+const word = String(options.word);
 
 const lockColumns = [...word.split('').map((letter) => [letter])];
 
@@ -43,7 +43,7 @@ const randomConsonant = () =>
 const randomVowel = () => VOWELS[Math.floor(Math.random() * VOWELS.length)];
 const randomLetter = () =>
   Math.random() < VOWEL_CHANCE ? randomVowel() : randomConsonant();
-const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
+const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5);
 
 for (let columnIndex = 0; columnIndex < word.length; columnIndex++) {
   for (let index = 0; index < complexity - 1; index++) {
