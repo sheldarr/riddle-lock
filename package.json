@@ -7,8 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.0",
-    "commander": "^7.0.0",
-    "faker": "^5.2.0"
+    "commander": "^7.0.0"
   },
   "devDependencies": {
     "@types/eslint": "^7.2.6",
