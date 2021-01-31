@@ -12,7 +12,6 @@
   "devDependencies": {
     "@types/eslint": "^7.2.6",
     "@types/eslint-plugin-prettier": "^3.1.0",
-    "@types/faker": "^5.1.6",
     "@types/node": "^14.14.22",
     "@types/prettier": "^2.1.6",
     "@typescript-eslint/eslint-plugin": "^4.14.1",

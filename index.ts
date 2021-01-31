@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { program } from 'commander';
 
 program
@@ -34,7 +35,7 @@ const complexity = Math.min(
   Number(options.complexity),
   [...CONSONANTS, ...VOWELS].length,
 );
-const word = String(options.word);
+const word = String(options.word).toUpperCase();
 
 const lockColumns = [...word.split('').map((letter) => [letter])];
 
@@ -48,7 +49,7 @@ const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5);
 for (let columnIndex = 0; columnIndex < word.length; columnIndex++) {
   for (let index = 0; index < complexity - 1; index++) {
     while (true) {
-      const letter = randomLetter();
+      const letter = randomLetter().toUpperCase();
 
       if (!lockColumns[columnIndex].includes(letter)) {
         lockColumns[columnIndex].push(letter);
@@ -60,11 +61,13 @@ for (let columnIndex = 0; columnIndex < word.length; columnIndex++) {
 }
 
 for (let characterIndex = 0; characterIndex < complexity; characterIndex++) {
-  let row = '';
-
   for (let columnIndex = 0; columnIndex < word.length; columnIndex++) {
-    row += lockColumns[columnIndex][characterIndex];
+    const nextLetter = lockColumns[columnIndex][characterIndex];
+
+    word.charAt(columnIndex) === nextLetter
+      ? process.stdout.write(chalk.green(nextLetter))
+      : process.stdout.write(chalk.white(nextLetter));
   }
 
-  console.log(row.toUpperCase());
+  process.stdout.write('\n');
 }
